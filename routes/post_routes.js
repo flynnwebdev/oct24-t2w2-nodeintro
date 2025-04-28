@@ -1,6 +1,7 @@
 // import express from 'express' // Import the default export
 import { Router } from 'express' // Destructures Router from within the default export
 import Post from '../models/post.js'
+import Category from '../models/category.js'
 
 // Default visibility of all module contents is private
 
@@ -9,7 +10,15 @@ const router = Router()
 
 // Get all posts
 router.get('/posts', async (req, res) => {
-    res.send(await Post.find(req.query.draft ? {} : { isPublished: true }))
+    res.send(
+        await Post
+            .find(req.query.draft ? {} : { isPublished: true })
+            .populate({
+                path: 'category',
+                select: '-__v -_id'
+            })
+            .select('-__v')
+    )
 })
 
 // router.get('/posts/search', (req, res) => {})
@@ -21,7 +30,7 @@ router.get('/posts/:id', async (req, res) => {
     // 2. Get the ID of the post
     const post_id = req.params.id  // All params values are strings
     // 3. Get the post with the given ID
-    const post = await Post.findOne({ _id: post_id }) //posts.find(p => p.id == post_id) // Using == means type coercion will happen
+    const post = await Post.findOne({ _id: post_id }).populate('category') //posts.find(p => p.id == post_id) // Using == means type coercion will happen
     // 4. Send the post back to the client
     if (post) {
         res.send(post)
