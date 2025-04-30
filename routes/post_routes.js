@@ -12,6 +12,9 @@ const router = Router()
 router.get('/posts', async (req, res) => {
     res.send(
         await Post
+            // find() argument is selective with a ternary
+            // If req.query.draft is truthy, pass an empty filter (i.e. {})
+            // else filter to include only published posts
             .find(req.query.draft ? {} : { isPublished: true })
             .populate({
                 path: 'category',

@@ -22,18 +22,22 @@ console.log('Categories created')
 // assigned an ObjectId, both in the db AND in the in-memory object.
 const posts = [
     {
-        id: 1,
         title: 'Post 1',
         body: 'Lorem ipsum dolor sit amet',
         isPublished: true,
         category: cats[1]
     },
     {
-        id: 2,
         title: 'Post 2',
         body: 'This is the body of post 2',
         isPublished: true,
         category: cats[2]
+    },
+    {
+        title: 'Post 3',
+        body: 'This is the body of post 3',
+        isPublished: false,
+        category: cats[0]
     }
 ]
 
