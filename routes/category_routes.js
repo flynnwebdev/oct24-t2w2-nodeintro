@@ -1,6 +1,6 @@
 // import express from 'express' // Import the default export
 import { Router } from 'express' // Destructures Router from within the default export
-import Category from '../models/category'
+import Category from '../models/category.js'
 
 // Default visibility of all module contents is private
 

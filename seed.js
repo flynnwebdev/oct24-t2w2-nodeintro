@@ -3,6 +3,13 @@ import db from './db.js'
 import Category from './models/category.js'
 import Post from "./models/post.js"
 
+// const users = [
+//     {
+//         email: 'foo@bar.com',
+//         password: ''
+//     }
+// ]
+
 const categories = [
     { name: 'Food' },
     { name: 'Coding' },
