@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import express from 'express' // ES6 modules
 import cors from 'cors'
 import helmet from 'helmet'
@@ -19,6 +20,13 @@ app.use(express.json())
 // app.use inserts middleware into the request-response cycle
 app.use(auth_routes)
 app.use(post_routes)
+
+// Error handler
+app.use((err, req, res, next) => {
+    // console.error(err.stack)
+    // console.log(err)
+    res.status(err.status).send({ error: err.message })
+})
 
 // Start the dev server on the given port
 // The callback is called when the server is running

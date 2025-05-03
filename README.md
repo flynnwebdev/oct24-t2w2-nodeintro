@@ -10,7 +10,7 @@
 
 ## GOAL: Use JWT for auth
 
-- Register: Create an account
+- *Register: Create an account
 - Login: email/password login that generates and returns a JWT
 - Routes: authenticate the token to protect one or more CRUD routes
 - Logout: Invalidates the token

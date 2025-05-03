@@ -2,6 +2,7 @@
 import { Router } from 'express' // Destructures Router from within the default export
 import Post from '../models/post.js'
 import Category from '../models/category.js'
+import { auth, adminOnly } from '../auth.js'
 
 // Default visibility of all module contents is private
 
@@ -9,7 +10,8 @@ import Category from '../models/category.js'
 const router = Router()
 
 // Get all posts
-router.get('/posts', async (req, res) => {
+router.get('/posts', auth, adminOnly, async (req, res) => {
+    console.log(req.auth)
     res.send(
         await Post
             // find() argument is selective with a ternary
